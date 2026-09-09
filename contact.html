@@ -7,7 +7,8 @@
   <title>Contact & Appointments | REVA Skin & Hair Clinic</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="contact">
@@ -104,14 +105,37 @@
         </form>
       </div>
 
-      <div class="contact__map container reveal">
-        <iframe
-          title="REVA Skin and Hair Clinic location on Google Maps"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0444921567896!2d85.30118697557184!3d27.715912525113445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1949501143fb%3A0x228e5f232d8abef8!2sReva%20skin%20and%20Hair%20Clinic%20Kathmandu!5e0!3m2!1sen!2snp!4v1788926034972!5m2!1sen!2snp"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
+      <div class="locations container reveal" aria-labelledby="locations-heading">
+        <div class="section__header">
+          <span class="section__eyebrow">Our Clinics</span>
+          <h2 class="section__title" id="locations-heading">Find a Clinic Near You</h2>
+          <p class="section__subtitle">Tap a pin for clinic details, or choose a branch below to zoom in on the map.</p>
+        </div>
+        <div class="locations__layout">
+          <div class="locations__list" role="group" aria-label="Clinic locations list">
+            <button type="button" class="location-btn" data-loc="reva-main" aria-pressed="true">
+              <span class="location-btn__name">REVA Kathmandu — Main</span>
+              <span class="location-btn__meta">42 Wellness Avenue, Medical District, Kathmandu 44600</span>
+              <span class="location-btn__meta">+977 1-4567890</span>
+            </button>
+            <button type="button" class="location-btn" data-loc="reva-lazimpat" aria-pressed="false">
+              <span class="location-btn__name">REVA Lazimpat</span>
+              <span class="location-btn__meta">Lazimpat Road, Kathmandu 44600</span>
+              <span class="location-btn__meta">+977 1-4442121</span>
+            </button>
+            <button type="button" class="location-btn" data-loc="reva-baneshwor" aria-pressed="false">
+              <span class="location-btn__name">REVA Baneshwor</span>
+              <span class="location-btn__meta">Baneshwor Height, Kathmandu 44600</span>
+              <span class="location-btn__meta">+977 1-4498765</span>
+            </button>
+            <button type="button" class="location-btn" data-loc="reva-patan" aria-pressed="false">
+              <span class="location-btn__name">REVA Patan</span>
+              <span class="location-btn__meta">Pulchowk, Lalitpur 44700</span>
+              <span class="location-btn__meta">+977 1-5553434</span>
+            </button>
+          </div>
+          <div class="locations__map" id="clinicMap" role="application" aria-label="Interactive map of REVA clinic locations"></div>
+        </div>
       </div>
     </section>
   </main>
@@ -120,5 +144,7 @@
 
   <script src="js/layout.js"></script>
   <script src="js/main.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="js/map.js" defer></script>
 </body>
 </html>

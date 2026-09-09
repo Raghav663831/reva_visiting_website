@@ -95,34 +95,29 @@
     revealObserver.observe(el);
   });
 
-  /* ---- Animated Counters ---- */
+  /* ---- Animated Counters (trigger once, never re-animate) ---- */
+  const animatedStats = new Set();
+
+  function triggerCounter(el) {
+    if (animatedStats.has(el)) return;
+    animatedStats.add(el);
+    animateCounter(el);
+    counterObserver.unobserve(el);
+  }
+
   const counterObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
+          triggerCounter(entry.target);
         }
       });
     },
     { threshold: 0.5 }
   );
 
-  document.querySelectorAll('.stat__number').forEach((el) => counterObserver.observe(el));
-
-  /* Re-animate stats every time cursor hovers */
-  document.querySelectorAll('.stat').forEach((stat) => {
-    const numEl = stat.querySelector('.stat__number');
-    if (!numEl) return;
-
-    stat.addEventListener('mouseenter', () => {
-      const target = parseFloat(numEl.dataset.target);
-      const suffix = numEl.dataset.suffix || '';
-      const isDecimal = numEl.dataset.decimal === 'true';
-      numEl.textContent = isDecimal ? '0.0' + suffix : '0' + suffix;
-      stat.classList.add('is-counting');
-      animateCounter(numEl, () => stat.classList.remove('is-counting'));
-    });
+  document.querySelectorAll('.stat__number').forEach((el) => {
+    if (!animatedStats.has(el)) counterObserver.observe(el);
   });
 
   function animateCounter(el, onComplete) {
@@ -308,6 +303,214 @@
       formSuccess.hidden = true;
     }, 6000);
   });
+
+  /* ---- Accessible Modal System ---- */
+  const modalFocusable = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  let activeModal = null;
+  let lastFocused = null;
+
+  function openDialog(modalEl) {
+    if (!modalEl || modalEl.hidden === false) return;
+    lastFocused = document.activeElement;
+    modalEl.hidden = false;
+    modalEl.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    activeModal = modalEl;
+    const closeBtn = modalEl.querySelector('.modal__close');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeDialog(modalEl) {
+    if (!modalEl) return;
+    modalEl.hidden = true;
+    modalEl.setAttribute('aria-hidden', 'true');
+    if (activeModal === modalEl) activeModal = null;
+    const anyOpen = document.querySelectorAll('.modal:not([hidden])').length > 0;
+    if (!anyOpen) document.body.style.overflow = '';
+    if (lastFocused && lastFocused.isConnected) lastFocused.focus();
+  }
+
+  document.querySelectorAll('.modal').forEach((modal) => {
+    modal.addEventListener('click', (e) => {
+      if (e.target.closest('[data-modal-close]')) closeDialog(modal);
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!activeModal) return;
+
+    if (e.key === 'Escape') {
+      closeDialog(activeModal);
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const focusables = activeModal.querySelectorAll(modalFocusable);
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  /* ---- Doctor Detail Profiles (in-page modal) ---- */
+  const doctorModal = document.getElementById('doctorModal');
+  const doctorModalContent = document.getElementById('doctorModalContent');
+
+  const DOCTORS = {
+    ananya: {
+      name: 'Dr. Ananya Sharma',
+      firstName: 'Dr. Sharma',
+      role: 'Founder & Lead Dermatologist',
+      specialty: 'Cosmetic & Medical Dermatology',
+      qualifications: 'MD, FAAD',
+      experience: '15+ years',
+      photo: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop',
+      alt: 'Dr. Ananya Sharma, Founder and Lead Dermatologist at REVA',
+      bio: 'Dr. Ananya Sharma founded REVA Skin and Hair Clinic with a vision of delivering evidence-based dermatology with genuine compassion. As a board-certified dermatologist and Fellow of the American Academy of Dermatology, she specializes in medical and cosmetic dermatology, helping patients of all skin types achieve healthy, confident skin through personalized treatment plans.',
+      schedule: [
+        { days: 'Tuesday', time: '10:00 AM – 5:00 PM' },
+        { days: 'Thursday', time: '10:00 AM – 5:00 PM' },
+        { days: 'Saturday', time: '9:00 AM – 2:00 PM' },
+      ],
+    },
+    rajesh: {
+      name: 'Dr. Rajesh Mehta',
+      firstName: 'Dr. Mehta',
+      role: 'Hair Restoration Specialist',
+      specialty: 'Trichology & PRP Therapy',
+      qualifications: 'MD',
+      experience: '12+ years',
+      photo: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop',
+      alt: 'Dr. Rajesh Mehta, Hair Restoration Specialist at REVA',
+      bio: 'Dr. Rajesh Mehta is a leading trichologist focused on non-surgical hair restoration. He has performed thousands of PRP and mesotherapy sessions, combining the latest regenerative techniques with meticulous scalp care to help patients prevent hair loss and restore natural density.',
+      schedule: [
+        { days: 'Monday', time: '11:00 AM – 6:00 PM' },
+        { days: 'Wednesday', time: '11:00 AM – 6:00 PM' },
+        { days: 'Friday', time: '10:00 AM – 5:00 PM' },
+      ],
+    },
+    priya: {
+      name: 'Dr. Priya Kulkarni',
+      firstName: 'Dr. Kulkarni',
+      role: 'Laser & Aesthetic Specialist',
+      specialty: 'Laser Dermatology & Skin Rejuvenation',
+      qualifications: 'MD',
+      experience: '10+ years',
+      photo: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop',
+      alt: 'Dr. Priya Kulkarni, Laser and Aesthetic Specialist at REVA',
+      bio: 'Dr. Priya Kulkarni brings advanced expertise in laser dermatology and aesthetic medicine. She is passionate about minimally invasive rejuvenation, using medical-grade lasers and energy-based devices to safely treat pigmentation, scarring, and signs of aging while preserving natural results.',
+      schedule: [
+        { days: 'Tuesday', time: '10:00 AM – 5:00 PM' },
+        { days: 'Friday', time: '10:00 AM – 5:00 PM' },
+        { days: 'Saturday', time: '9:00 AM – 2:00 PM' },
+      ],
+    },
+    vikram: {
+      name: 'Dr. Vikram Joshi',
+      firstName: 'Dr. Joshi',
+      role: 'Dermatopathologist & Skin Surgeon',
+      specialty: 'Surgical & Procedural Dermatology',
+      qualifications: 'MD, DNB',
+      experience: '9+ years',
+      photo: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80&auto=format&fit=crop',
+      alt: 'Dr. Vikram Joshi, Dermatopathologist and Skin Surgeon at REVA',
+      bio: 'Dr. Vikram Joshi specializes in surgical and procedural dermatology, from mole and cyst removal to mole mapping and skin cancer screening. His dual training in dermatopathology ensures precise diagnosis and meticulous surgical outcomes with minimal scarring.',
+      schedule: [
+        { days: 'Monday', time: '12:00 PM – 7:00 PM' },
+        { days: 'Thursday', time: '12:00 PM – 7:00 PM' },
+        { days: 'Saturday', time: '10:00 AM – 3:00 PM' },
+      ],
+    },
+    neha: {
+      name: 'Dr. Neha Verma',
+      firstName: 'Dr. Verma',
+      role: 'Pediatric & Aesthetic Dermatologist',
+      specialty: 'Pediatric Dermatology & Cosmetic Care',
+      qualifications: 'MD, FAAD',
+      experience: '8+ years',
+      photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop',
+      alt: 'Dr. Neha Verma, Pediatric and Aesthetic Dermatologist at REVA',
+      bio: 'Dr. Neha Verma cares for delicate skin — from childhood eczema and birthmarks to teen acne. She pairs pediatric dermatology with subtle aesthetic treatments, earning the trust of families and young adults who value a gentle, unhurried approach.',
+      schedule: [
+        { days: 'Wednesday', time: '10:00 AM – 5:00 PM' },
+        { days: 'Friday', time: '10:00 AM – 5:00 PM' },
+        { days: 'Sunday', time: '10:00 AM – 2:00 PM' },
+      ],
+    },
+  };
+
+  const chipIcon = (type) => {
+    if (type === 'cap') {
+      return '<svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3L19 7l-9 4-9-4 9-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 9.5V13c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    }
+    if (type === 'clock') {
+      return '<svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l2.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+    }
+    return '<svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 12.5l5-5M7.5 7.5h.01M12.5 12.5h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  };
+
+  function renderDoctorProfile(doc) {
+    return `
+      <div class="doctor-profile__header">
+        <img class="doctor-profile__photo" src="${doc.photo}" alt="${doc.alt}" loading="lazy">
+        <div>
+          <span class="doctor-profile__eyebrow">Specialist Profile</span>
+          <h2 class="doctor-profile__name" id="doctorModalTitle">${doc.name}</h2>
+          <p class="doctor-profile__role">${doc.role}</p>
+          <div class="doctor-profile__meta">
+            <span class="doctor-profile__chip">${chipIcon('cap')}${doc.qualifications}</span>
+            <span class="doctor-profile__chip">${chipIcon('clock')}${doc.experience} experience</span>
+            <span class="doctor-profile__chip">${chipIcon('doc')}${doc.specialty}</span>
+          </div>
+        </div>
+      </div>
+      <div class="doctor-profile__section">
+        <h3>About</h3>
+        <p class="doctor-profile__bio">${doc.bio}</p>
+      </div>
+      <div class="doctor-profile__section">
+        <h3>Available Appointment Times</h3>
+        <ul class="doctor-profile__schedule">
+          ${doc.schedule.map((s) => `<li><strong>${s.days}</strong><span>${s.time}</span></li>`).join('')}
+        </ul>
+      </div>
+      <div class="doctor-profile__actions">
+        <a href="contact.html" class="btn btn--primary">Book with ${doc.firstName}</a>
+        <a href="contact.html" class="btn btn--ghost">Ask a Question</a>
+      </div>`;
+  }
+
+  if (doctorModal && doctorModalContent) {
+    document.querySelectorAll('[data-doctor-open]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const profile = DOCTORS[btn.dataset.doctorOpen];
+        if (!profile) return;
+        doctorModalContent.innerHTML = renderDoctorProfile(profile);
+        openDialog(doctorModal);
+      });
+    });
+  }
+
+  /* ---- Book a Free Consultation — Chat Platform Selector ---- */
+  const chatModal = document.getElementById('chatModal');
+  const chatToggle = document.getElementById('chatConsultationBtn');
+
+  chatToggle?.addEventListener('click', () => openDialog(chatModal));
+
+  if (chatModal) {
+    chatModal.querySelectorAll('.chat-option').forEach((option) => {
+      option.addEventListener('click', () => {
+        closeDialog(chatModal);
+      });
+    });
+  }
 
   /* ---- Scroll Handler (throttled via rAF) ---- */
   let ticking = false;
