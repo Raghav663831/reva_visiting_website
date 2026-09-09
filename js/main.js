@@ -364,54 +364,6 @@
   const doctorModalContent = document.getElementById('doctorModalContent');
 
   const DOCTORS = {
-    ananya: {
-      name: 'Dr. Ananya Sharma',
-      firstName: 'Dr. Sharma',
-      role: 'Founder & Lead Dermatologist',
-      specialty: 'Cosmetic & Medical Dermatology',
-      qualifications: 'MD, FAAD',
-      experience: '15+ years',
-      photo: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop',
-      alt: 'Dr. Ananya Sharma, Founder and Lead Dermatologist at REVA',
-      bio: 'Dr. Ananya Sharma founded REVA Skin and Hair Clinic with a vision of delivering evidence-based dermatology with genuine compassion. As a board-certified dermatologist and Fellow of the American Academy of Dermatology, she specializes in medical and cosmetic dermatology, helping patients of all skin types achieve healthy, confident skin through personalized treatment plans.',
-      schedule: [
-        { days: 'Tuesday', time: '10:00 AM – 5:00 PM' },
-        { days: 'Thursday', time: '10:00 AM – 5:00 PM' },
-        { days: 'Saturday', time: '9:00 AM – 2:00 PM' },
-      ],
-    },
-    rajesh: {
-      name: 'Dr. Rajesh Mehta',
-      firstName: 'Dr. Mehta',
-      role: 'Hair Restoration Specialist',
-      specialty: 'Trichology & PRP Therapy',
-      qualifications: 'MD',
-      experience: '12+ years',
-      photo: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop',
-      alt: 'Dr. Rajesh Mehta, Hair Restoration Specialist at REVA',
-      bio: 'Dr. Rajesh Mehta is a leading trichologist focused on non-surgical hair restoration. He has performed thousands of PRP and mesotherapy sessions, combining the latest regenerative techniques with meticulous scalp care to help patients prevent hair loss and restore natural density.',
-      schedule: [
-        { days: 'Monday', time: '11:00 AM – 6:00 PM' },
-        { days: 'Wednesday', time: '11:00 AM – 6:00 PM' },
-        { days: 'Friday', time: '10:00 AM – 5:00 PM' },
-      ],
-    },
-    priya: {
-      name: 'Dr. Priya Kulkarni',
-      firstName: 'Dr. Kulkarni',
-      role: 'Laser & Aesthetic Specialist',
-      specialty: 'Laser Dermatology & Skin Rejuvenation',
-      qualifications: 'MD',
-      experience: '10+ years',
-      photo: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop',
-      alt: 'Dr. Priya Kulkarni, Laser and Aesthetic Specialist at REVA',
-      bio: 'Dr. Priya Kulkarni brings advanced expertise in laser dermatology and aesthetic medicine. She is passionate about minimally invasive rejuvenation, using medical-grade lasers and energy-based devices to safely treat pigmentation, scarring, and signs of aging while preserving natural results.',
-      schedule: [
-        { days: 'Tuesday', time: '10:00 AM – 5:00 PM' },
-        { days: 'Friday', time: '10:00 AM – 5:00 PM' },
-        { days: 'Saturday', time: '9:00 AM – 2:00 PM' },
-      ],
-    },
     vikram: {
       name: 'Dr. Vikram Joshi',
       firstName: 'Dr. Joshi',

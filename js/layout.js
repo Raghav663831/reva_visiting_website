@@ -46,9 +46,7 @@
     <header class="${navbarClass}" id="navbar" role="banner">
       <div class="container navbar__inner">
         <a href="index.html" class="navbar__logo" aria-label="REVA Skin and Hair Clinic — Home">
-          <span class="navbar__logo-icon" aria-hidden="true">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/><path d="M10 16c0-3.3 2.7-8 6-8s6 4.7 6 8-2.7 8-6 8-6-4.7-6-8z" fill="currentColor" opacity="0.3"/><path d="M16 10v12M12 14h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </span>
+          
           <span class="navbar__logo-text">REVA <small>Skin & Hair</small></span>
         </a>
         <button class="navbar__toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
@@ -87,8 +85,7 @@
         </nav>
         <div class="footer__contact">
           <h3>Contact</h3>
-          <p>42 Wellness Avenue<br>Kathmandu 44600, Nepal</p>
-          <p><a href="tel:+97714567890">+977 1-4567890</a></p>
+          <p><a href="tel:+977 9749717175">+977 9749717175</a></p>
           <p><a href="mailto:hello@revaclinic.com">hello@revaclinic.com</a></p>
         </div>
       </div>

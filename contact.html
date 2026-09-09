@@ -39,16 +39,16 @@
           <div class="contact__details">
             <div class="contact__detail">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 18s-7-4.35-7-10a7 7 0 0114 0c0 5.65-7 10-7 10z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="2.5" stroke="currentColor" stroke-width="1.5"/></svg>
-              <div>
+              <div style="margin-bottom: 20px; color:#2b6cb0">
                 <strong>Address</strong>
-                <p>42 Wellness Avenue, Medical District<br>Kathmandu 44600, Nepal</p>
+                <p><ul><b><li> Sorakhutte , Kathmandu 44600</li></b><br><b><li> Kamalpokhari,Kathmandu 44600 </li></b></ul></p>
               </div>
             </div>
             <div class="contact__detail">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 4h3l2 5-2.5 1.5a11 11 0 005 5L12 13l5 2v3a1 1 0 01-1 1A16 16 0 013 5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
               <div>
                 <strong>Phone</strong>
-                <p><a href="tel:+97714567890">+977 1-4567890</a></p>
+                <p><a href="tel:+977 9749717175">+977 9749717175</a></p>
               </div>
             </div>
             <div class="contact__detail">
@@ -88,7 +88,7 @@
           <div class="form-group">
             <label for="service">Service of Interest</label>
             <select id="service" name="service" required>
-              <option value="" disabled selected>Select a service</option>
+              <option value="" disabled selected >Select a service</option>
               <option value="skin">Skin Treatments</option>
               <option value="hair">Hair Restoration</option>
               <option value="laser">Laser Therapy</option>
@@ -113,25 +113,15 @@
         </div>
         <div class="locations__layout">
           <div class="locations__list" role="group" aria-label="Clinic locations list">
-            <button type="button" class="location-btn" data-loc="reva-main" aria-pressed="true">
-              <span class="location-btn__name">REVA Kathmandu — Main</span>
-              <span class="location-btn__meta">42 Wellness Avenue, Medical District, Kathmandu 44600</span>
-              <span class="location-btn__meta">+977 1-4567890</span>
+            <button type="button" class="location-btn" data-loc="reva-sorakhutte" aria-pressed="false">
+              <span class="location-btn__name">REVA Sorakhutte</span>
+              <span class="location-btn__meta">Nayabazaar-17, Kathmandu 44600</span>
+              <span class="location-btn__meta">+977 9749717175</span>
             </button>
-            <button type="button" class="location-btn" data-loc="reva-lazimpat" aria-pressed="false">
-              <span class="location-btn__name">REVA Lazimpat</span>
-              <span class="location-btn__meta">Lazimpat Road, Kathmandu 44600</span>
-              <span class="location-btn__meta">+977 1-4442121</span>
-            </button>
-            <button type="button" class="location-btn" data-loc="reva-baneshwor" aria-pressed="false">
-              <span class="location-btn__name">REVA Baneshwor</span>
-              <span class="location-btn__meta">Baneshwor Height, Kathmandu 44600</span>
-              <span class="location-btn__meta">+977 1-4498765</span>
-            </button>
-            <button type="button" class="location-btn" data-loc="reva-patan" aria-pressed="false">
-              <span class="location-btn__name">REVA Patan</span>
-              <span class="location-btn__meta">Pulchowk, Lalitpur 44700</span>
-              <span class="location-btn__meta">+977 1-5553434</span>
+            <button type="button" class="location-btn" data-loc="reva-kamalpokhari" aria-pressed="false">
+              <span class="location-btn__name">REVA Kamalpokhari</span>
+              <span class="location-btn__meta">Kamalpokhari, Kathmandu 44600</span>
+              <span class="location-btn__meta">+977 9749717175</span>
             </button>
           </div>
           <div class="locations__map" id="clinicMap" role="application" aria-label="Interactive map of REVA clinic locations"></div>

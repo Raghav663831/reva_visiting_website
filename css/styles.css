@@ -990,6 +990,7 @@ textarea:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+  padding-left:18rem;
 }
 
 .team-card {
@@ -998,6 +999,7 @@ textarea:focus-visible {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition), box-shadow var(--transition);
+  cursor:pointer;
 }
 
 .team-card:hover {
@@ -1629,7 +1631,7 @@ textarea:focus-visible {
   display: grid;
   grid-template-columns: minmax(280px, 360px) 1fr;
   gap: 24px;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 .locations__list {
@@ -2342,3 +2344,8 @@ textarea:focus-visible {
     grid-column: span 1;
   }
 }
+
+ ul li{
+  margin-bottom:-10px;
+  line-height:1.2;
+ }
