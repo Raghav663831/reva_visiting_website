@@ -664,6 +664,34 @@ textarea:focus-visible {
   color: var(--gray-500);
 }
 
+/* ---- Symmetric 3-column stats grid (reviews page) ---- */
+.stats__grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.section--alt .stats__grid--3 .stat__number {
+  color: var(--blue-700);
+}
+
+.section--alt .stats__grid--3 .stat__label {
+  color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .stats__grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats__grid--3 {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
 /* ---- About ---- */
 .about__grid {
   display: grid;
