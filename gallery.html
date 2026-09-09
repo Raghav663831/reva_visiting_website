@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View before and after results from REVA Skin and Hair Clinic patients — real transformations from our treatments.">
+  <title>Results Gallery | REVA Skin & Hair Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="gallery">
+
+  <div id="site-header"></div>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="page-hero__title">Before &amp; After Results</h1>
+        <p class="page-hero__subtitle">Real patient transformations from personalized treatment journeys</p>
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><span aria-current="page">Results</span></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="gallery section" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Real Results</span>
+          <h2 class="section__title" id="gallery-heading">Patient Transformations</h2>
+          <p class="section__subtitle">Scroll horizontally — images crossfade from before to after as each case comes into view.</p>
+        </div>
+      </div>
+      <div class="gallery__scroll-container" id="galleryScroll">
+        <div class="gallery__track">
+          <div class="gallery__slide" data-index="0">
+            <div class="gallery__image-stack">
+              <img class="gallery__img gallery__img--before active" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80&auto=format&fit=crop" alt="Before treatment — skin rejuvenation case 1" loading="lazy">
+              <img class="gallery__img gallery__img--after" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&auto=format&fit=crop" alt="After treatment — skin rejuvenation case 1" loading="lazy">
+            </div>
+            <p class="gallery__caption">Skin Rejuvenation — 3 Month Results</p>
+          </div>
+          <div class="gallery__slide" data-index="1">
+            <div class="gallery__image-stack">
+              <img class="gallery__img gallery__img--before active" src="https://images.unsplash.com/photo-1505751172876-bce52abdca69?w=600&q=80&auto=format&fit=crop" alt="Before treatment — hair restoration case 2" loading="lazy">
+              <img class="gallery__img gallery__img--after" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop" alt="After treatment — hair restoration case 2" loading="lazy">
+            </div>
+            <p class="gallery__caption">Hair Restoration — 6 Month Results</p>
+          </div>
+          <div class="gallery__slide" data-index="2">
+            <div class="gallery__image-stack">
+              <img class="gallery__img gallery__img--before active" src="https://images.unsplash.com/photo-1515377900203-c2bcd929fb94?w=600&q=80&auto=format&fit=crop" alt="Before treatment — acne scar case 3" loading="lazy">
+              <img class="gallery__img gallery__img--after" src="https://images.unsplash.com/photo-1596755389378-c179d47f12b8?w=600&q=80&auto=format&fit=crop" alt="After treatment — acne scar case 3" loading="lazy">
+            </div>
+            <p class="gallery__caption">Acne Scar Treatment — 4 Month Results</p>
+          </div>
+          <div class="gallery__slide" data-index="3">
+            <div class="gallery__image-stack">
+              <img class="gallery__img gallery__img--before active" src="https://images.unsplash.com/photo-1552693679-1bbe4b3962b7?w=600&q=80&auto=format&fit=crop" alt="Before treatment — pigmentation case 4" loading="lazy">
+              <img class="gallery__img gallery__img--after" src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&auto=format&fit=crop" alt="After treatment — pigmentation case 4" loading="lazy">
+            </div>
+            <p class="gallery__caption">Pigmentation Correction — 2 Month Results</p>
+          </div>
+        </div>
+        <div class="gallery__progress" aria-hidden="true">
+          <div class="gallery__progress-bar" id="galleryProgress"></div>
+        </div>
+        <p class="gallery__hint container" aria-live="polite"><span id="galleryHint">Scroll horizontally to compare before &amp; after</span></p>
+      </div>
+
+      <div class="gallery__vertical" id="galleryVertical" aria-label="Scroll-triggered treatment journey">
+        <div class="container gallery__vertical-inner">
+          <div class="gallery__vertical-images">
+            <img class="gallery__vertical-img active" data-step="0" src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=700&q=80&auto=format&fit=crop" alt="Treatment result step 1 — before" loading="lazy">
+            <img class="gallery__vertical-img" data-step="1" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80&auto=format&fit=crop" alt="Treatment result step 2 — during recovery" loading="lazy">
+            <img class="gallery__vertical-img" data-step="2" src="https://images.unsplash.com/photo-1596755389378-c179d47f12b8?w=700&q=80&auto=format&fit=crop" alt="Treatment result step 3 — after" loading="lazy">
+          </div>
+          <div class="gallery__vertical-text">
+            <div class="gallery__step active" data-step="0">
+              <span class="gallery__step-label">Step 1</span>
+              <h3>Initial Consultation</h3>
+              <p>Every journey begins with a thorough skin analysis and personalized treatment plan.</p>
+            </div>
+            <div class="gallery__step" data-step="1">
+              <span class="gallery__step-label">Step 2</span>
+              <h3>Treatment Phase</h3>
+              <p>Our medical team delivers precise, evidence-based procedures with your comfort in mind.</p>
+            </div>
+            <div class="gallery__step" data-step="2">
+              <span class="gallery__step-label">Step 3</span>
+              <h3>Visible Results</h3>
+              <p>Patients see meaningful improvement with ongoing support and follow-up care.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner" aria-label="Book an appointment">
+      <div class="container">
+        <h2 class="cta-banner__title">Ready for Your Own Transformation?</h2>
+        <p class="cta-banner__text">Schedule a consultation to discuss your goals with our specialists.</p>
+        <a href="contact.html" class="btn btn--primary btn--lg">Book Appointment</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

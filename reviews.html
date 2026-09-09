@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Read patient reviews and testimonials for REVA Skin and Hair Clinic — real stories from our dermatology patients.">
+  <title>Patient Reviews | REVA Skin & Hair Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="reviews">
+
+  <div id="site-header"></div>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="page-hero__title">Patient Reviews</h1>
+        <p class="page-hero__subtitle">Hear from patients who trusted REVA with their skin and hair care</p>
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><span aria-current="page">Reviews</span></li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="testimonials section" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section__header reveal">
+          <span class="section__eyebrow">Patient Reviews</span>
+          <h2 class="section__title" id="testimonials-heading">What Our Patients Say</h2>
+          <p class="section__subtitle">98% patient satisfaction across 10,000+ treatments.</p>
+        </div>
+        <div class="testimonials__carousel" aria-roledescription="carousel" aria-label="Patient testimonials">
+          <div class="testimonials__track" id="testimonialTrack">
+            <blockquote class="testimonial">
+              <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="testimonial__text">"Dr. Sharma transformed my skin after years of struggling with acne scars. The entire team made me feel comfortable and informed at every step."</p>
+              <footer class="testimonial__author">
+                <strong>Meera Patel</strong>
+                <span>Skin Rejuvenation Patient</span>
+              </footer>
+            </blockquote>
+            <blockquote class="testimonial">
+              <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="testimonial__text">"I was skeptical about hair restoration, but the PRP results exceeded my expectations. Professional, clean clinic with genuine care."</p>
+              <footer class="testimonial__author">
+                <strong>Arjun Desai</strong>
+                <span>Hair Restoration Patient</span>
+              </footer>
+            </blockquote>
+            <blockquote class="testimonial">
+              <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="testimonial__text">"The laser treatment was virtually painless and the results are amazing. REVA is my go-to for all dermatology needs."</p>
+              <footer class="testimonial__author">
+                <strong>Sneha Reddy</strong>
+                <span>Laser Therapy Patient</span>
+              </footer>
+            </blockquote>
+            <blockquote class="testimonial">
+              <div class="testimonial__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="testimonial__text">"From consultation to follow-up, everything was seamless. I finally found a clinic that prioritizes patient education and safety."</p>
+              <footer class="testimonial__author">
+                <strong>Kavita Nair</strong>
+                <span>Cosmetic Dermatology Patient</span>
+              </footer>
+            </blockquote>
+          </div>
+          <div class="testimonials__controls">
+            <button class="testimonials__btn" id="testimonialPrev" aria-label="Previous testimonial">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="testimonials__dots" id="testimonialDots" role="tablist" aria-label="Testimonial navigation"></div>
+            <button class="testimonials__btn" id="testimonialNext" aria-label="Next testimonial">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" aria-label="Clinic statistics">
+      <div class="container stats__grid">
+        <div class="stat reveal">
+          <span class="stat__number" data-target="10000" data-suffix="+">0</span>
+          <span class="stat__label">Patients Treated</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__number" data-target="98" data-suffix="%">0</span>
+          <span class="stat__label">Patient Satisfaction</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__number" data-target="4.9" data-suffix="/5" data-decimal="true">0</span>
+          <span class="stat__label">Average Rating</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner" aria-label="Book an appointment">
+      <div class="container">
+        <h2 class="cta-banner__title">Join Our Satisfied Patients</h2>
+        <p class="cta-banner__text">Experience the REVA difference — book your consultation today.</p>
+        <a href="contact.html" class="btn btn--primary btn--lg">Book Appointment</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/layout.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
