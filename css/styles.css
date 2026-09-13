@@ -64,7 +64,7 @@ h1, h2, h3, h4,
   letter-spacing: -0.01em;
 }
 
-/* Typographic hierarchy — clear contrast between headings, subheadings, body */
+ Typographic hierarchy — clear contrast between headings, subheadings, body 
 h1, h2,
 .hero__title,
 .section__title,
@@ -122,7 +122,7 @@ textarea:focus-visible {
   padding: 0 24px;
 }
 
-/* ---- Buttons ---- */
+ ---- Buttons ---- 
 .btn {
   display: inline-flex;
   align-items: center;
@@ -185,7 +185,7 @@ textarea:focus-visible {
   width: 100%;
 }
 
-/* ---- Section shared ---- */
+ ---- Section shared ---- 
 .section {
   padding: 96px 0;
 }
@@ -985,7 +985,7 @@ textarea:focus-visible {
   color: var(--gray-500);
 }
 
-/* ---- Team ---- */
+/* ---- Team dxtujfghjjkjkbkvjht dada ahile chill ma xa mukesh ---- */ 
 .team__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2335,7 +2335,9 @@ textarea:focus-visible {
   }
 }
 
- ul li{
+ /* About */
+ul li{
   margin-bottom:-10px;
   line-height:1.2;
  }
+ 
