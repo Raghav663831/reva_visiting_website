@@ -365,15 +365,15 @@
 
   const DOCTORS = {
     vikram: {
-      name: 'Dr. Vikram Joshi',
-      firstName: 'Dr. Joshi',
+      name: 'Dr. Prakash Acharya',
+      firstName: 'Dr. Acharya',
       role: 'Dermatopathologist & Skin Surgeon',
       specialty: 'Surgical & Procedural Dermatology',
       qualifications: 'MD, DNB',
       experience: '9+ years',
       photo: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80&auto=format&fit=crop',
-      alt: 'Dr. Vikram Joshi, Dermatopathologist and Skin Surgeon at REVA',
-      bio: 'Dr. Vikram Joshi specializes in surgical and procedural dermatology, from mole and cyst removal to mole mapping and skin cancer screening. His dual training in dermatopathology ensures precise diagnosis and meticulous surgical outcomes with minimal scarring.',
+      alt: 'Dr. Prakash Acharya, Dermatopathologist and Skin Surgeon at REVA',
+      bio: 'Dr. Prakash Acharya specializes in surgical and procedural dermatology, from mole and cyst removal to mole mapping and skin cancer screening. His dual training in dermatopathology ensures precise diagnosis and meticulous surgical outcomes with minimal scarring.',
       schedule: [
         { days: 'Monday', time: '12:00 PM – 7:00 PM' },
         { days: 'Thursday', time: '12:00 PM – 7:00 PM' },
