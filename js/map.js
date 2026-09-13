@@ -1,102 +1,60 @@
 /**
- * REVA Skin & Hair Clinic — Interactive multi-location map (Leaflet).
- * Renders one marker per clinic branch with a details popup, and lets
- * users jump to a branch from the accompanying location list.
+ * REVA Skin & Hair Clinic — Google Maps branch switcher.
+ * One Google Maps embed per branch; clicking a branch in the list
+ * shows that branch's map. Embeds load lazily on first activation.
  */
 (function () {
   'use strict';
 
-  const CLINICS = [
-    {
-      id: 'reva-sorakhutte',
-      name: 'REVA Sorakhutte',
-      address: 'Nayabazaar-17, Kathmandu 44600',
-      phone: '+977 9749717175',
-      phoneHref: 'tel:+9779749717175',
-      lat: 27.715896,
-      lng: 85.303762,
-      hours: 'Mon–Sat 9:00 AM – 6:00 PM',
-    },
-    {
-      id: 'reva-kamalpokhari',
-      name: 'REVA Kamalpokhari',
-      address: 'Kamalpokhari, Kathmandu 44600',
-      phone: '+977 9749717175',
-      phoneHref: 'tel:+9779749717175',
-      lat: 27.710288, 
-      lng: 85.327975,
-      hours: 'Mon–Sat 9:00 AM – 6:00 PM',
-    },
-  ];
+  const framesContainer = document.querySelector('.locations__frames');
+  const list = document.querySelector('.locations__list');
+  if (!framesContainer || !list) return;
 
-  const mapEl = document.getElementById('clinicMap');
-  if (!mapEl || typeof L === 'undefined') return;
+  const frames = Array.from(document.querySelectorAll('.locations__frame'));
+  const buttons = Array.from(document.querySelectorAll('.location-btn'));
 
-  const markerIcon = L.icon({
-    iconUrl:
-      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-    iconRetinaUrl:
-      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-    shadowUrl:
-      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
+  function activateFrame(id, focus) {
+    const nextFrame = frames.find((f) => f.dataset.locFrame === id);
+    if (!nextFrame) return;
 
-  const map = L.map(mapEl, { scrollWheelZoom: false }).setView([27.7065, 85.315], 12);
+    const iframe = nextFrame.querySelector('iframe');
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+    if (iframe && !iframe.src) {
+      const src = iframe.getAttribute('data-src');
+      if (src) iframe.src = src;
+    }
 
-  map.on('click', () => {
-    map.scrollWheelZoom.enable();
-  });
-  map.on('mouseout', () => {
-    map.scrollWheelZoom.disable();
-  });
+    frames.forEach((frame) => {
+      const active = frame === nextFrame;
+      frame.classList.toggle('is-active', active);
+      if (!active) {
+        const otherFrame = frame.querySelector('iframe');
+        if (otherFrame) otherFrame.setAttribute('aria-hidden', 'true');
+      }
+    });
 
-  const markers = {};
-  const buttons = {};
+    if (nextFrame) {
+      const activeFrame = nextFrame.querySelector('iframe');
+      if (activeFrame) activeFrame.removeAttribute('aria-hidden');
+    }
 
-  CLINICS.forEach((clinic) => {
-    const popupContent = `
-      <div class="map-popup">
-        <strong class="map-popup__name">${clinic.name}</strong>
-        <span class="map-popup__address">${clinic.address}</span>
-        <a class="map-popup__phone" href="${clinic.phoneHref}">${clinic.phone}</a>
-        <span class="map-popup__hours">${clinic.hours}</span>
-      </div>`;
+    buttons.forEach((btn) => {
+      const active = btn.dataset.loc === id;
+      btn.setAttribute('aria-pressed', String(active));
+      btn.classList.toggle('is-active', active);
+    });
 
-    const marker = L.marker([clinic.lat, clinic.lng], { icon: markerIcon })
-      .addTo(map)
-      .bindPopup(popupContent, { closeButton: true });
+    if (focus && nextFrame) {
+      nextFrame.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
 
-    markers[clinic.id] = marker;
-  });
-
-  const clinicButtons = document.querySelectorAll('.location-btn');
-  clinicButtons.forEach((btn) => {
-    const id = btn.dataset.loc;
-    buttons[id] = btn;
-
+  buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const clinic = CLINICS.find((c) => c.id === id);
-      if (!clinic) return;
-
-      map.flyTo([clinic.lat, clinic.lng], 15, { duration: 1.1 });
-      setTimeout(() => markers[id].openPopup(), 650);
-
-      clinicButtons.forEach((b) => {
-        b.setAttribute('aria-pressed', String(b === btn));
-        b.classList.toggle('is-active', b === btn);
-      });
+      activateFrame(btn.dataset.loc, true);
     });
   });
 
-  buttons['reva-main'] && buttons['reva-main'].classList.add('is-active');
+  const firstBtn = buttons.find((b) => b.classList.contains('is-active')) || buttons[0];
+  if (firstBtn) activateFrame(firstBtn.dataset.loc, false);
 })();

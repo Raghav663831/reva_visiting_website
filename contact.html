@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="contact">
@@ -124,7 +123,39 @@
               <span class="location-btn__meta">+977 9749717175</span>
             </button>
           </div>
-          <div class="locations__map" id="clinicMap" role="application" aria-label="Interactive map of REVA clinic locations"></div>
+          <div class="locations__frames">
+            <!--
+              HOW TO ADD YOUR OWN GOOGLE MAPS PIN (do this once per branch):
+
+              1. Open Google Maps in your browser: https://maps.google.com
+              2. Search for the clinic / place you want to pin (or right-click the
+                 exact spot on the map and select "What's here?" to copy its coords).
+              3. Click  Share  →  Embed a map  →  copy the full iframe code, OR just
+                 copy the address shown in the search box.
+              4. Paste whatever you copied into the data-src="..." of the matching
+                 frame below (the q= part accepts a full address, a place name, or
+                 even coordinates like 27.7158,85.3012).
+
+              Example data-src you can use as a template:
+              data-src="https://maps.google.com/maps?q=YOUR+ADDRESS+OR+PLACE&output=embed"
+            -->
+            <div class="locations__frame is-active" data-loc-frame="reva-sorakhutte">
+              <iframe
+                title="Google Map — REVA Sorakhutte"
+                data-src="https://maps.google.com/maps?q=REVA%20Skin%20and%20Hair%20Clinic%20Sorakhutte%20Kathmandu&output=embed"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="locations__frame" data-loc-frame="reva-kamalpokhari">
+              <iframe
+                title="Google Map — REVA Kamalpokhari"
+                data-src="https://maps.google.com/maps?q=Kamalpokhari%2C%20Kathmandu%2044600&output=embed"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -134,7 +165,6 @@
 
   <script src="js/layout.js"></script>
   <script src="js/main.js" defer></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
   <script src="js/map.js" defer></script>
 </body>
 </html>
